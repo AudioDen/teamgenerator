@@ -43,6 +43,23 @@ const managerQuestion = [
   },
 ];
 
+//// end of manager question to build the team or not if yes you go to team role question
+
+const endManagerQuestion = {
+  type: "list",
+  Message: "Would you like to add more members to your team? select yes to add a engineer or intern.",
+  choices: ["Yes", "No"],
+  name: "memberTeamSize",
+};
+
+///team role question from here you got to the corresponding set of questions
+const teamRole = {
+  type: "list",
+  Message: "Is this member of the team a engineer or a intern.",
+  choices: ["engineer", "intern"],
+  name: "memberRoleType"
+
+}
 
 /// Engineer array of questions  ///
 
@@ -98,11 +115,13 @@ const internQuestion = [
 
 
 
+// init function starts the app and sends user to managerInfo function////
 
 function init() {
   inquirer.prompt(startQuestion).then((response) => {
     if (response.starterQ === "Yes create team") {
       console.log("Please submit manager info");
+      managerInfo();
     } else {
       console.log("application will now close thankyou.");
 
@@ -110,5 +129,44 @@ function init() {
   })
 
 }
+
+//// manager function that runs manager questions send manager to final question to start building of team
+function managerInfo() {
+  inquirer.prompt(managerQuestion).then((response) => {
+    console.log(response);
+    teamSize();
+  })
+}
+
+function teamSize() {
+  inquirer.prompt(endManagerQuestion).then((response) => {
+    if (response.memberTeamSize === "Yes") {
+      teamMemberLoop();
+    } else if (response.memberTeamSize === "No") {
+      console.log("This is where we build html with a manager only");
+    }
+  })
+}
+
+
+///team builder function
+function teamMemberLoop() {
+  inquirer.prompt(teamRole).then((teamRoleResponse) => {
+    if (teamRoleResponse.memberRoleType === "engineer") {
+      console.log("Submit engineer profile information");
+      inquirer.prompt(engineerQuestion).then((engResponse) => {
+        console.log(engResponse);
+      });
+    } else if (teamRoleResponse.memberRoleType === "intern") {
+      console.log("Submit intern profile information");
+      inquirer.prompt(internQuestion).then((intResponse) => {
+        console.log(intResponse);
+      });
+    }
+  });
+}
+
+
+
 
 init();
