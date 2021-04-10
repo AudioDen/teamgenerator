@@ -1,10 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-
-//const Manager = requier("./lib/manger");
-//const Engineer = requier("./lib/engineer");
-//const Intern = requier("./lib/intern");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 
 
 
@@ -12,7 +11,7 @@ const fs = require("fs");
 // first question to begin app ///
 const startQuestion = {
   type: "list",
-  message: "This is a team profile generator. It will generate a useful html file with useful info on team members the team can access. Would you like to continue? ",
+  message: `This is a team profile generator. It will generate a useful html file with useful info on team members the team can access. Would you like to continue?`,
   choices: ["Yes create team", "no not at this time"],
   name: "starterQ"
 };
@@ -23,22 +22,22 @@ const startQuestion = {
 const managerQuestion = [
   {
     type: "input",
-    message: "What is the manager name?",
+    message: `What is the manager name?`,
     name: "managerName",
   },
   {
     type: "input",
-    message: "What is the manager id number?",
+    message: `What is the manager id number?`,
     name: "managerId",
   },
   {
     type: "input",
-    message: "What is the manager email address?",
+    message: `What is the manager email address?`,
     name: "managerEmail",
   },
   {
     type: "input",
-    message: "What is the manager office number?",
+    message:`What is the manager office number?`,
     name: "managerOfficeNumber",
   },
 ];
@@ -47,7 +46,7 @@ const managerQuestion = [
 
 const endManagerQuestion = {
   type: "list",
-  message: "Would you like to add more members to your team? select yes to add a engineer or intern.",
+  message: `Would you like to add more members to your team? select yes to add a engineer or intern.`,
   choices: ["Yes", "No"],
   name: "memberTeamSize",
 };
@@ -56,7 +55,7 @@ const endManagerQuestion = {
 
 const teamRole = {
   type: "list",
-  message: "Is this member of the team a engineer or a intern.",
+  message: `Is this member of the team a engineer or a intern.`,
   choices: ["engineer", "intern"],
   name: "memberRoleType"
 
@@ -67,22 +66,22 @@ const teamRole = {
 const engineerQuestion = [
   {
     type: "input",
-    message: "What is the engineer name?",
+    message: `What is the engineer name?`,
     name: "engineerName",
   },
   {
     type: "input",
-    message: "What is the engineer id number?",
+    message: `What is the engineer id number?`,
     name: "engineerId",
   },
   {
     type: "input",
-    message: "What is the engineer email address?",
+    message: `What is the engineer email address?`,
     name: "engineerEmail",
   },
   {
     type: "input",
-    message: "What is the engineer Github profile name?",
+    message: `What is the engineer Github profile name?`,
     name: "enginneerGithub",
   },
 ];
@@ -91,22 +90,22 @@ const engineerQuestion = [
 const internQuestion = [
   {
     type: "input",
-    message: "What is the intern's name?",
+    message: `What is the intern's name?`,
     name: "internName",
   },
   {
     type: "input",
-    message: "What is the intern's id number?",
+    message: `What is the intern's id number?`,
     name: "internId",
   },
   {
     type: "input",
-    message: "What is the intern's email address?",
+    message: `What is the intern's email address?`,
     name: "inter Email",
   },
   {
     type: "input",
-    message: "What is the intern's Bootcamp or university?",
+    message: `What is the intern's Bootcamp or university?`,
     name: "internSchool",
   },
 ];
