@@ -47,15 +47,16 @@ const managerQuestion = [
 
 const endManagerQuestion = {
   type: "list",
-  Message: "Would you like to add more members to your team? select yes to add a engineer or intern.",
+  message: "Would you like to add more members to your team? select yes to add a engineer or intern.",
   choices: ["Yes", "No"],
   name: "memberTeamSize",
 };
 
-///team role question from here you got to the corresponding set of questions
+///team role question from here you go to the corresponding set of questions
+
 const teamRole = {
   type: "list",
-  Message: "Is this member of the team a engineer or a intern.",
+  message: "Is this member of the team a engineer or a intern.",
   choices: ["engineer", "intern"],
   name: "memberRoleType"
 
@@ -85,6 +86,8 @@ const engineerQuestion = [
     name: "enginneerGithub",
   },
 ];
+
+///intern array of questions//////
 const internQuestion = [
   {
     type: "input",
@@ -138,12 +141,14 @@ function managerInfo() {
   })
 }
 
+
+// team building function for intern and engineer
 function teamSize() {
   inquirer.prompt(endManagerQuestion).then((response) => {
     if (response.memberTeamSize === "Yes") {
       teamMemberLoop();
     } else if (response.memberTeamSize === "No") {
-      console.log("This is where we build html with a manager only");
+      console.log("This is where we build html page");
     }
   })
 }
@@ -156,11 +161,13 @@ function teamMemberLoop() {
       console.log("Submit engineer profile information");
       inquirer.prompt(engineerQuestion).then((engResponse) => {
         console.log(engResponse);
+        teamSize();
       });
     } else if (teamRoleResponse.memberRoleType === "intern") {
       console.log("Submit intern profile information");
       inquirer.prompt(internQuestion).then((intResponse) => {
         console.log(intResponse);
+        teamSize();
       });
     }
   });
