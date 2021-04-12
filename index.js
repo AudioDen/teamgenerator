@@ -5,6 +5,7 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
+const teamArray = []
 
 
 
@@ -160,6 +161,7 @@ function teamMemberLoop() {
       console.log("Submit engineer profile information");
       inquirer.prompt(engineerQuestion).then((engResponse) => {
         console.log(engResponse);
+        const newEngineer = new Engineer(engResponse.name)
         teamSize();
       });
     } else if (teamRoleResponse.memberRoleType === "intern") {
